@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,18 +7,26 @@ import { RouterModule } from '@angular/router';
 import { Header } from '../../components/header/header';
 import { Constants } from '../../config/constants';
 
-
 @Component({
   selector: 'app-login',
   imports: [Header, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule],
   templateUrl: './login.html',
-  styleUrl: './login.scss'
+  styleUrls: ['./login.scss'] // ✅ ต้องเติม s
 })
-export class Login {
+export class Login implements OnInit {
   message: string = "";
   messageColor: string = "red";
 
   constructor(private constants: Constants) { }
+
+  ngOnInit(): void {
+    // ✅ ถ้ามี user ใน localStorage อยู่แล้ว ไปหน้า main เลย
+    const user = localStorage.getItem("user");
+    if (user) {
+      window.location.href = "/main";
+    }
+  }
+
   async onLogin(event: Event) {
     event.preventDefault();
 
@@ -35,21 +42,19 @@ export class Login {
     try {
       const res = await fetch(`${this.constants.API_ENDPOINT}/login`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
       });
 
-      const data = await res.json(); // อ่านเพียงครั้งเดียว
+      const data = await res.json();
 
       if (res.ok) {
         this.message = "เข้าสู่ระบบสำเร็จ!";
         this.messageColor = "green";
-        localStorage.setItem("user", JSON.stringify(data.user));
-        window.location.href = "/main"; // ไปหน้า Main
+        localStorage.setItem("user", JSON.stringify(data.user)); // ✅ จำ login
+        window.location.href = "/main";
       } else {
-        this.message = data.message = "มีข้อผิดพลาด";
+        this.message = data.message || "มีข้อผิดพลาด";
         this.messageColor = "red";
       }
 
@@ -59,5 +64,4 @@ export class Login {
       console.error(error);
     }
   }
-
 }

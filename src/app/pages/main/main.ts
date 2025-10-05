@@ -39,7 +39,7 @@ export class Main implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem("user");
-    this.router.navigate(['/']);
+    localStorage.removeItem("user"); // ลบข้อมูล login
+    window.location.href = "/"; // กลับไปหน้า login
   }
 }
