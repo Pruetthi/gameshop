@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Constants } from '../../config/constants';
+import { Header } from '../../components/header/header';
 
 @Component({
   selector: 'app-main',
   standalone: true, // ถ้าเป็น standalone component
-  imports: [CommonModule], // ✅ ต้องมี CommonModule
+  imports: [CommonModule, Header], // ✅ ต้องมี CommonModule
   templateUrl: './main.html',
   styleUrls: ['./main.scss']
 })

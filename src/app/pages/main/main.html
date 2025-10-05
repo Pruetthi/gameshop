@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container">
     <h1>
         ยินดีต้อนรับ, {{ username }}
@@ -9,8 +10,8 @@
 
     <p>นี่คือหน้าหลักของระบบ</p>
 
-    <button (click)="goToEditProfile()">แก้ไขโปรไฟล์</button>
-    <button (click)="logout()" style="margin-left: 10px; background-color: red; color: white;">
-        ออกจากระบบ
-    </button>
+    <div class="button-container">
+        <button class="btn edit" (click)="goToEditProfile()">แก้ไขโปรไฟล์</button>
+        <button class="btn logout" (click)="logout()">ออกจากระบบ</button>
+    </div>
 </div>

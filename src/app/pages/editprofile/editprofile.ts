@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Constants } from '../../config/constants';
+import { Header } from '../../components/header/header';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-editprofile',
-  imports: [FormsModule],
+  imports: [FormsModule, Header, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, CommonModule],
   templateUrl: './editprofile.html',
   styleUrl: './editprofile.scss'
 })
@@ -12,6 +18,7 @@ export class Editprofile {
   selectedFile: File | null = null;
   message: string = "";
   messageColor: string = "red";
+  previewUrl: string | ArrayBuffer | null = null;
   constructor(private constants: Constants) { }
 
   ngOnInit(): void {
@@ -21,9 +28,17 @@ export class Editprofile {
     }
   }
 
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
+  onFileSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewUrl = reader.result;
+      };
+      reader.readAsDataURL(file); // แปลงไฟล์เป็น base64 แล้วโชว์ใน <img>
+    }
   }
+
 
   async onUpdate(event: Event) {
     event.preventDefault();
