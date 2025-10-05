@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>แก้ไขโปรไฟล์</h2>
+    <form (submit)="onUpdate($event)" enctype="multipart/form-data">
+        <label>ชื่อผู้ใช้</label>
+        <input id="username" type="text" [(ngModel)]="user.username" name="username" />
+
+        <label>อีเมล</label>
+        <input id="email" type="email" [(ngModel)]="user.email" name="email" />
+
+        <label>เบอร์โทรศัพท์</label>
+        <input id="phone_number" type="text" [(ngModel)]="user.phone_number" name="phone_number" />
+
+        <label>รหัสผ่านใหม่</label>
+        <input id="password" type="password" placeholder="เว้นว่างถ้าไม่ต้องการเปลี่ยน" name="password" />
+
+        <label>รูปโปรไฟล์</label>
+        <input id="profile_image" type="file" (change)="onFileSelected($event)" />
+
+        <button type="submit">บันทึกการแก้ไข</button>
+    </form>
+
+    <p [style.color]="messageColor">{{ message }}</p>
+</div>

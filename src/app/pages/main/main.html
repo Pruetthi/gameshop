@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>
+        ยินดีต้อนรับ, {{ username }}
+        <span *ngIf="status === 'admin'">(admin)</span> 🎉
+    </h1>
+
+    <img [src]="profileImage" alt="รูปโปรไฟล์"
+        style="width:150px; height:150px; border-radius:50%; object-fit:cover;" />
+
+    <p>นี่คือหน้าหลักของระบบ</p>
+
+    <button (click)="goToEditProfile()">แก้ไขโปรไฟล์</button>
+    <button (click)="logout()" style="margin-left: 10px; background-color: red; color: white;">
+        ออกจากระบบ
+    </button>
+</div>

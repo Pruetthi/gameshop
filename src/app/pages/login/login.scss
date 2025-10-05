@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* กึ่งกลางแนวนอน */
+    justify-content: center;
+    /* กึ่งกลางแนวตั้ง */
+    min-height: 100vh;
+    /* เต็มความสูงหน้าจอ */
+    margin-top: 30px;
+    /* เว้นระยะด้านบนสำหรับ header */
+}
+
+.container img {
+    width: 200px;
+    /* กำหนดความกว้างของโลโก้ */
+    height: auto;
+    /* ให้ความสูงปรับตามสัดส่วน */
+    border-radius: 10px;
+}
+
+mat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    /* กำหนดความกว้างของการ์ด */
+    background-color: #FAB12F;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 10px;
+}
