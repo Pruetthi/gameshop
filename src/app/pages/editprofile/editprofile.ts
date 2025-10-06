@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   templateUrl: './editprofile.html',
-  styleUrls: ['./editprofile.scss'] // ✅ เปลี่ยนตรงนี้
+  styleUrls: ['./editprofile.scss']
 })
 export class Editprofile {
   user: any = {};
@@ -35,14 +35,14 @@ export class Editprofile {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       this.user = JSON.parse(storedUser);
-      this.previewUrl = this.user.profile_image; // ✅ แสดงรูปเดิมด้วย
+      this.previewUrl = this.user.profile_image;
     }
   }
 
   onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
-      this.selectedFile = file; // ✅ ต้องมีบรรทัดนี้
+      this.selectedFile = file;
       const reader = new FileReader();
       reader.onload = () => {
         this.previewUrl = reader.result;
@@ -77,7 +77,7 @@ export class Editprofile {
       if (res.ok) {
         this.message = 'แก้ไขโปรไฟล์สำเร็จ!';
         this.messageColor = 'green';
-        localStorage.setItem('user', JSON.stringify(data.user)); // ✅ เก็บ URL ใหม่
+        localStorage.setItem('user', JSON.stringify(data.user));
       } else {
         this.message = data.message || 'มีข้อผิดพลาด';
         this.messageColor = 'red';

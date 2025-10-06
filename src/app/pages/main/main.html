@@ -1,14 +1,14 @@
 <app-header></app-header>
 <div class="container">
+    <span *ngIf="status === 'admin'">nice to meet you, Admin</span>
     <h1>
-        ยินดีต้อนรับ, {{ username }}
-        <span *ngIf="status === 'admin'">(admin)</span> 🎉
+        ยินดีต้อนรับ {{ username }}
     </h1>
 
     <img [src]="profileImage" alt="รูปโปรไฟล์"
         style="width:150px; height:150px; border-radius:50%; object-fit:cover;" />
 
-    <p>นี่คือหน้าหลักของระบบ</p>
+
 
     <div class="button-container">
         <button class="btn edit" (click)="goToEditProfile()">แก้ไขโปรไฟล์</button>

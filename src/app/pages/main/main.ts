@@ -6,8 +6,8 @@ import { Header } from '../../components/header/header';
 
 @Component({
   selector: 'app-main',
-  standalone: true, // ถ้าเป็น standalone component
-  imports: [CommonModule, Header], // ✅ ต้องมี CommonModule
+  standalone: true,
+  imports: [CommonModule, Header],
   templateUrl: './main.html',
   styleUrls: ['./main.scss']
 })
@@ -25,7 +25,7 @@ export class Main implements OnInit {
       this.username = userData.username;
       this.status = userData.status || '';
       this.profileImage = userData.profile_image
-        ? userData.profile_image // ✅ ใช้ URL ตรงจาก Cloudinary
+        ? userData.profile_image
         : "assets/default-avatar.png";
     }
   }
@@ -39,7 +39,7 @@ export class Main implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem("user"); // ลบข้อมูล login
-    window.location.href = "/"; // กลับไปหน้า login
+    localStorage.removeItem("user");
+    window.location.href = "/";
   }
 }

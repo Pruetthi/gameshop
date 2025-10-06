@@ -33,7 +33,7 @@ export class Register {
       reader.onload = () => {
         this.previewUrl = reader.result;
       };
-      reader.readAsDataURL(file); // แปลงไฟล์เป็น base64 แล้วโชว์ใน <img>
+      reader.readAsDataURL(file);
     }
   }
 

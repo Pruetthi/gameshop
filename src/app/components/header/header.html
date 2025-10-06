@@ -3,7 +3,7 @@
 
     <span>
         BARON SHOP
-        <span class="role" *ngIf="status">{{ status | titlecase }}</span>
+        <span class="role" *ngIf="status === 'admin'">Admin</span>
     </span>
 
     <span class="spacer"></span>
@@ -12,21 +12,21 @@
         <img [src]="profileImage" alt="Profile" class="avatar">
         <span>{{ username }}</span>
 
-        <!-- ปุ่ม 3 ขีด -->
+
         <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>menu</mat-icon>
         </button>
     </div>
 </mat-toolbar>
 
-<!-- เมนู dropdown -->
+
 <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="goToProfile()">
         <mat-icon>person</mat-icon>
         <span>Edit Profile</span>
     </button>
 
-    <!-- ✅ แสดงเฉพาะ admin -->
+
     <button mat-menu-item *ngIf="status === 'admin'" (click)="createGame()">
         <mat-icon>add_circle</mat-icon>
         <span>สร้างเกม</span>

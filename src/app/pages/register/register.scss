@@ -5,7 +5,6 @@
     justify-content: center;
     min-height: 100vh;
     margin-top: 80px;
-    /* เว้นสำหรับ header */
 }
 
 .container img {
@@ -51,7 +50,6 @@ mat-form-field {
 .upload-btn {
     display: inline-block;
     background-color: #0D0D39;
-    /* สี primary ของ Angular Material */
     color: white;
     padding: 8px 16px;
     border-radius: 6px;

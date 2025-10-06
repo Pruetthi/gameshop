@@ -11,7 +11,7 @@ import { Constants } from '../../config/constants';
   selector: 'app-login',
   imports: [Header, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule],
   templateUrl: './login.html',
-  styleUrls: ['./login.scss'] // ✅ ต้องเติม s
+  styleUrls: ['./login.scss']
 })
 export class Login implements OnInit {
   message: string = "";
@@ -20,7 +20,6 @@ export class Login implements OnInit {
   constructor(private constants: Constants) { }
 
   ngOnInit(): void {
-    // ✅ ถ้ามี user ใน localStorage อยู่แล้ว ไปหน้า main เลย
     const user = localStorage.getItem("user");
     if (user) {
       window.location.href = "/main";
@@ -51,7 +50,7 @@ export class Login implements OnInit {
       if (res.ok) {
         this.message = "เข้าสู่ระบบสำเร็จ!";
         this.messageColor = "green";
-        localStorage.setItem("user", JSON.stringify(data.user)); // ✅ จำ login
+        localStorage.setItem("user", JSON.stringify(data.user));
         window.location.href = "/main";
       } else {
         this.message = data.message || "มีข้อผิดพลาด";

@@ -5,22 +5,22 @@ mat-toolbar {
 
 mat-toolbar .logo {
     height: 100px;
-    /* กำหนดความสูงที่ต้องการ */
+
     object-fit: contain;
-    /* ให้คงสัดส่วน */
+
     vertical-align: middle;
-    /* จัดให้อยู่กึ่งกลางบรรทัด */
+
 }
 
 app-header,
 mat-toolbar {
     position: fixed;
-    /* ติดบน */
+
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    /* ให้ทับเนื้อหาอื่น */
+
 }
 
 .spacer {
@@ -73,6 +73,6 @@ mat-toolbar {
 
     button {
         color: white;
-        /* ให้ icon สีขาว */
+
     }
 }
