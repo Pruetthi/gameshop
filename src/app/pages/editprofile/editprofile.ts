@@ -7,71 +7,84 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-editprofile',
-  imports: [FormsModule, Header, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, CommonModule],
+  imports: [
+    FormsModule,
+    Header,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    CommonModule
+  ],
   templateUrl: './editprofile.html',
-  styleUrl: './editprofile.scss'
+  styleUrls: ['./editprofile.scss'] // ✅ เปลี่ยนตรงนี้
 })
 export class Editprofile {
   user: any = {};
   selectedFile: File | null = null;
-  message: string = "";
-  messageColor: string = "red";
+  message: string = '';
+  messageColor: string = 'red';
   previewUrl: string | ArrayBuffer | null = null;
+
   constructor(private constants: Constants) { }
 
   ngOnInit(): void {
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem('user');
     if (storedUser) {
       this.user = JSON.parse(storedUser);
+      this.previewUrl = this.user.profile_image; // ✅ แสดงรูปเดิมด้วย
     }
   }
 
   onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
+      this.selectedFile = file; // ✅ ต้องมีบรรทัดนี้
       const reader = new FileReader();
       reader.onload = () => {
         this.previewUrl = reader.result;
       };
-      reader.readAsDataURL(file); // แปลงไฟล์เป็น base64 แล้วโชว์ใน <img>
+      reader.readAsDataURL(file);
     }
   }
-
 
   async onUpdate(event: Event) {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append("username", this.user.username);
-    formData.append("email", this.user.email);
-    formData.append("phone_number", this.user.phone_number || "");
-    formData.append("password", (document.getElementById("password") as HTMLInputElement).value);
-
+    formData.append('username', this.user.username);
+    formData.append('email', this.user.email);
+    formData.append('phone_number', this.user.phone_number || '');
+    const passwordInput = (document.getElementById('password') as HTMLInputElement).value;
+    if (passwordInput) {
+      formData.append('password', passwordInput);
+    }
     if (this.selectedFile) {
-      formData.append("profile_image", this.selectedFile);
+      formData.append('profile_image', this.selectedFile);
     }
 
     try {
       const res = await fetch(`${this.constants.API_ENDPOINT}/edit-profile/${this.user.user_id}`, {
-        method: "PUT",
+        method: 'POST',
         body: formData
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        this.message = "แก้ไขโปรไฟล์สำเร็จ!";
-        this.messageColor = "green";
-        localStorage.setItem("user", JSON.stringify(data.user));
+        this.message = 'แก้ไขโปรไฟล์สำเร็จ!';
+        this.messageColor = 'green';
+        localStorage.setItem('user', JSON.stringify(data.user)); // ✅ เก็บ URL ใหม่
       } else {
-        this.message = data.message || "มีข้อผิดพลาด";
-        this.messageColor = "red";
+        this.message = data.message || 'มีข้อผิดพลาด';
+        this.messageColor = 'red';
       }
     } catch (error) {
-      this.message = "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้";
-      this.messageColor = "red";
+      this.message = 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้';
+      this.messageColor = 'red';
       console.error(error);
     }
   }

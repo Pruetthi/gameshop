@@ -25,8 +25,8 @@ export class Main implements OnInit {
       this.username = userData.username;
       this.status = userData.status || '';
       this.profileImage = userData.profile_image
-        ? `${this.constants.API_ENDPOINT}/uploads/${userData.profile_image}`
-        : "assets/default-avatar.png"; // รูป default ถ้าไม่มีรูป
+        ? userData.profile_image // ✅ ใช้ URL ตรงจาก Cloudinary
+        : "assets/default-avatar.png";
     }
   }
 
