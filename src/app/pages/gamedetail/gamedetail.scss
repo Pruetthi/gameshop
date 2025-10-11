@@ -1,82 +1,141 @@
-.container {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 0 15px;
-}
-
-.game-detail-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-}
-
-.game-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.game-main {
+.page-container {
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
-    align-items: flex-start;
+    /* ระยะห่างระหว่าง 2 คอลัมน์ */
+    padding: 20px;
+    margin-top: 50px;
+    background-color: #f0f0f0;
+    /* สีพื้นหลังรอบนอกสุด (ถ้ามี) */
+}
+
+/* === คอลัมน์ซ้าย === */
+.main-content {
+    flex: 3;
+    /* ให้คอลัมน์ซ้ายกว้างกว่า */
+    background-color: #FAB12F;
+    padding: 20px;
+
+    border-radius: 8px;
+}
+
+.btn-back {
+    background-color: #FA812F !important;
+    color: white;
+    margin-bottom: 20px;
 }
 
 .game-img {
     width: 100%;
-    max-width: 400px;
-    border-radius: 12px;
+    max-height: 400px;
     object-fit: cover;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
-.game-info {
-    flex: 1;
+.info-box {
+    background-color: #FEF3E2;
+    padding: 20px;
+    border-radius: 8px;
+    color: #333;
+}
+
+.info-header {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    h1 {
+        margin: 0;
+        font-size: 2rem;
+    }
 }
 
 .game-description {
-    font-size: 1rem;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
-.game-price {
-    font-size: 1.2rem;
+.game-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    font-weight: 500;
+}
+
+.meta-price {
     font-weight: bold;
-    color: #2c3e50;
+    font-size: 1.2rem;
 }
 
-.game-release {
-    color: #7f8c8d;
+/* === คอลัมน์ขวา === */
+.sidebar {
+    flex: 1;
+    /* ให้คอลัมน์ขวากว้างน้อยกว่า */
+    background-color: #0D0D39;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-games {
+    margin-bottom: 20px;
+
+    h3 {
+        border-bottom: 2px solid #FA812F;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+    }
+
+    ol {
+        padding-left: 20px;
+
+        li {
+            margin-bottom: 8px;
+        }
+    }
+}
+
+.action-buttons {
+    margin-top: auto;
+    /* ดันปุ่มลงไปอยู่ด้านล่างสุดของ Sidebar */
+}
+
+/* สไตล์ปุ่มใน Sidebar */
+.action-buttons button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 12px 0;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+        margin-right: 8px;
+    }
+}
+
+.btn-addcart {
+    background-color: #FA812F !important;
+    color: white !important;
 }
 
 .btn-buy {
-    padding: 10px 20px;
-    background-color: #27ae60;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    background-color: #FAB12F !important;
+    color: white !important;
 }
 
-.btn-buy:hover {
-    background-color: #2ecc71;
+.btn-edit {
+    background-color: #FA812F !important;
+    color: white !important;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .game-main {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .game-img {
-        max-width: 100%;
-    }
+.btn-delete {
+    background-color: #DD0303 !important;
+    color: white !important;
 }

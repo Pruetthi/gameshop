@@ -5,12 +5,15 @@ import { Main } from './pages/main/main';
 import { Editprofile } from './pages/editprofile/editprofile';
 import { Creategame } from './pages/creategame/creategame';
 import { Gamedetail } from './pages/gamedetail/gamedetail';
+import { EditGame } from './pages/edit-game/edit-game';
+
 export const routes: Routes = [
     { path: '', component: Login },
     { path: 'register', component: Register },
     { path: 'main', component: Main },
     { path: 'edit-profile', component: Editprofile },
     { path: 'creategame', component: Creategame },
-    { path: 'game-detail/:id', component: Gamedetail }
+    { path: 'game-detail/:id', component: Gamedetail },
+    { path: 'edit-game/:id', component: EditGame },
 
 ];
