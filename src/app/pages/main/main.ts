@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Constants } from '../../config/constants';
 import { Header } from '../../components/header/header';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [CommonModule, Header],
+  imports: [CommonModule, Header, HttpClientModule, FormsModule],
   templateUrl: './main.html',
   styleUrls: ['./main.scss']
 })
@@ -15,8 +16,14 @@ export class Main implements OnInit {
   username: string = "";
   status: string = '';
   profileImage: string = "";
+  games: any[] = [];
+  filteredGames: any[] = [];
 
-  constructor(private router: Router, private constants: Constants) { }
+  categories: any[] = [];
+  searchText: string = '';
+  selectedCategory: string = '';
+
+  constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     const user = localStorage.getItem("user");
@@ -28,6 +35,9 @@ export class Main implements OnInit {
         ? userData.profile_image
         : "assets/default-avatar.png";
     }
+
+    this.loadGames();
+    this.loadCategories();
   }
 
   goToEditProfile() {
@@ -36,6 +46,31 @@ export class Main implements OnInit {
       const userData = JSON.parse(user);
       this.router.navigate(['/edit-profile'], { state: { user: userData } });
     }
+  }
+
+  loadGames() {
+    this.http.get<any[]>('http://localhost:3000/games').subscribe({
+      next: (res) => {
+        this.games = res;
+        this.filteredGames = res; // เริ่มต้นให้โชว์ทั้งหมด
+      },
+      error: (err) => console.error('โหลดเกมไม่สำเร็จ', err),
+    });
+  }
+
+  loadCategories() {
+    this.http.get<any[]>('http://localhost:3000/categories').subscribe({
+      next: (res) => this.categories = res,
+      error: (err) => console.error('โหลดหมวดหมู่ไม่สำเร็จ', err),
+    });
+  }
+
+  searchGames() {
+    this.filteredGames = this.games.filter(game => {
+      const matchesName = game.game_name.toLowerCase().includes(this.searchText.toLowerCase());
+      const matchesCategory = this.selectedCategory ? game.category_id == this.selectedCategory : true;
+      return matchesName && matchesCategory;
+    });
   }
 
   logout() {

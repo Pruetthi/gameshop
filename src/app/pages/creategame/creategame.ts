@@ -1,11 +1,96 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+// 🧱 Angular Material modules
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
+import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
+  standalone: true,
   selector: 'app-creategame',
-  imports: [],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule,
+
+    // 🧩 Material modules
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatButtonModule,
+    MatCardModule
+  ],
   templateUrl: './creategame.html',
-  styleUrl: './creategame.scss'
+  styleUrls: ['./creategame.scss'],
+
 })
-export class Creategame {
+export class Creategame implements OnInit {
+  game_name: string = '';
+  price: number | null = null;
+  category_id: number | null = null;
+  description: string = '';
+  release_date: string = '';
+  selectedFile: File | null = null;
+
+  categories: { category_id: number; category_name: string }[] = [];
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit(): void {
+    // โหลดหมวดหมู่เกมจาก API (อาจจะเป็น /categories)
+    this.http.get<any[]>('http://localhost:3000/categories').subscribe({
+      next: (res) => (this.categories = res),
+      error: (err) => console.error(err),
+    });
+    // ตั้งค่าวันที่อัตโนมัติเป็นวันที่ปัจจุบัน
+    const today = new Date();
+    this.release_date = today.toISOString().split('T')[0]; // yyyy-mm-dd
+
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  addGame(): void {
+    if (!this.game_name || this.price === null || this.category_id === null) {
+      alert('กรุณากรอกข้อมูลให้ครบ');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('game_name', this.game_name);
+    formData.append('price', String(this.price));
+    formData.append('category_id', String(this.category_id));
+    formData.append('description', this.description);
+    formData.append('release_date', this.release_date);
+
+    if (this.selectedFile) {
+      formData.append('game_image', this.selectedFile);
+    }
+
+    this.http.post('http://localhost:3000/addGame', formData).subscribe({
+      next: (res: any) => {
+        alert('เพิ่มเกมสำเร็จ!');
+        console.log(res);
+      },
+      error: (err) => {
+        console.error(err);
+        alert('เกิดข้อผิดพลาดในการเพิ่มเกม');
+      },
+    });
+  }
+
 
 }
