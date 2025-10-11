@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Constants } from '../../config/constants';
 
 @Component({
   standalone: true,
@@ -45,11 +46,11 @@ export class Creategame implements OnInit {
 
   categories: { category_id: number; category_name: string }[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private constants: Constants) { }
 
   ngOnInit(): void {
     // โหลดหมวดหมู่เกมจาก API (อาจจะเป็น /categories)
-    this.http.get<any[]>('http://localhost:3000/categories').subscribe({
+    this.http.get<any[]>(`${this.constants.API_ENDPOINT}/categories`).subscribe({
       next: (res) => (this.categories = res),
       error: (err) => console.error(err),
     });
@@ -80,7 +81,7 @@ export class Creategame implements OnInit {
       formData.append('game_image', this.selectedFile);
     }
 
-    this.http.post('http://localhost:3000/addGame', formData).subscribe({
+    this.http.post(`${this.constants.API_ENDPOINT}/addGame`, formData).subscribe({
       next: (res: any) => {
         alert('เพิ่มเกมสำเร็จ!');
         console.log(res);

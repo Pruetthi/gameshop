@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Header } from '../../components/header/header';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Constants } from '../../config/constants';
 
 @Component({
   selector: 'app-main',
@@ -23,7 +24,7 @@ export class Main implements OnInit {
   searchText: string = '';
   selectedCategory: string = '';
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private constants: Constants) { }
 
   ngOnInit(): void {
     const user = localStorage.getItem("user");
@@ -49,7 +50,7 @@ export class Main implements OnInit {
   }
 
   loadGames() {
-    this.http.get<any[]>('http://localhost:3000/games').subscribe({
+    this.http.get<any[]>(`${this.constants.API_ENDPOINT}/games`).subscribe({
       next: (res) => {
         this.games = res;
         this.filteredGames = res; // เริ่มต้นให้โชว์ทั้งหมด
@@ -59,7 +60,7 @@ export class Main implements OnInit {
   }
 
   loadCategories() {
-    this.http.get<any[]>('http://localhost:3000/categories').subscribe({
+    this.http.get<any[]>(`${this.constants.API_ENDPOINT}/categories`).subscribe({
       next: (res) => this.categories = res,
       error: (err) => console.error('โหลดหมวดหมู่ไม่สำเร็จ', err),
     });
