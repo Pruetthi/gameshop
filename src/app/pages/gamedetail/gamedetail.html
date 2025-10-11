@@ -1,0 +1,18 @@
+<app-header></app-header>
+
+<div class="container" *ngIf="game">
+    <div class="game-detail-card">
+        <h1 class="game-title">{{ game.game_name }}</h1>
+
+        <div class="game-main">
+            <img [src]="game.game_image" alt="{{ game.game_name }}" class="game-img" />
+
+            <div class="game-info">
+                <p class="game-description">{{ game.description }}</p>
+                <p class="game-price"><strong>ราคา:</strong> {{ game.price }} บาท</p>
+                <p class="game-release"><small>วางขายเมื่อ: {{ game.release_date | date:'yyyy-MM-dd' }}</small></p>
+                <button class="btn-buy">ซื้อเกมนี้</button>
+            </div>
+        </div>
+    </div>
+</div>

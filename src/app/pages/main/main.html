@@ -27,12 +27,13 @@
 
     <h2>🎮 เกมทั้งหมด</h2>
     <div class="games-container">
-        <div *ngFor="let game of filteredGames" class="game-card">
+        <div *ngFor="let game of filteredGames" class="game-card" (click)="goToGameDetail(game.game_id)">
             <img [src]="game.game_image" alt="{{ game.game_name }}" class="game-img" />
             <h3>{{ game.game_name }}</h3>
             <p>{{ game.description }}</p>
             <p><strong>ราคา:</strong> {{ game.price }} บาท</p>
             <p><small>วางขายเมื่อ: {{ game.release_date | date:'yyyy-MM-dd' }}</small></p>
         </div>
+
     </div>
 </div>

@@ -73,7 +73,10 @@ export class Main implements OnInit {
       return matchesName && matchesCategory;
     });
   }
-
+  goToGameDetail(gameId: number) {
+    // ส่ง gameId ไปที่ route /game-detail/:id
+    this.router.navigate(['/game-detail', gameId]);
+  }
   logout() {
     localStorage.removeItem("user");
     window.location.href = "/";

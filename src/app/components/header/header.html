@@ -9,6 +9,11 @@
     <span class="spacer"></span>
 
     <div class="user-info" *ngIf="username">
+        <div class="wallet-display">
+            ยอดเงิน:
+            <span>{{ wallet_balance }}</span>
+            บาท
+        </div>
         <img [src]="profileImage" alt="Profile" class="avatar">
         <span>{{ username }}</span>
 
@@ -21,9 +26,14 @@
 
 
 <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="openTopUpDialog()">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <span>เติมเงิน</span>
+    </button>
+
     <button mat-menu-item (click)="goToProfile()">
         <mat-icon>person</mat-icon>
-        <span>Edit Profile</span>
+        <span>Profile</span>
     </button>
 
 
