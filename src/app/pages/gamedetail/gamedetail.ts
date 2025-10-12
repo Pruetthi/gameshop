@@ -8,6 +8,7 @@ import { PurchaseDialogComponent } from '../../components/purchase-dialog/purcha
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-gamedetail',
@@ -22,7 +23,7 @@ export class Gamedetail implements OnInit {
   status: string = '';
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private constants: Constants, private router: Router,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog, private location: Location) { }
 
   ngOnInit() {
     const user = localStorage.getItem("user");
@@ -32,7 +33,7 @@ export class Gamedetail implements OnInit {
     }
     const gameId = this.route.snapshot.paramMap.get('id');
     if (gameId) {
-      this.http.get(`http://localhost:3000/game/${gameId}`).subscribe({
+      this.http.get(`${this.constants.API_ENDPOINT}/game/${gameId}`).subscribe({
         next: (res: any) => this.game = res,
         error: (err) => console.error('โหลดรายละเอียดเกมไม่สำเร็จ', err)
       });
@@ -99,6 +100,10 @@ export class Gamedetail implements OnInit {
           alert('ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้');
         });
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

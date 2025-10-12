@@ -91,7 +91,7 @@ export class EditGame implements OnInit {
   onDelete(gameId: any) {
     if (!confirm("คุณแน่ใจไหมว่าต้องการลบเกมนี้?")) return;
 
-    this.http.delete(`http://localhost:3000/game/${gameId}`).subscribe({
+    this.http.delete(`${this.constants.API_ENDPOINT}/game/${gameId}`).subscribe({
       next: () => {
         this.message = "ลบเกมสำเร็จ";
         this.messageColor = "green";

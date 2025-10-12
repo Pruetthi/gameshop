@@ -3,7 +3,7 @@
 <div class="page-container" *ngIf="game">
 
     <div class="main-content">
-        <button mat-flat-button class="btn-back">
+        <button mat-flat-button class="btn-back" (click)="goBack()">
             ย้อนกลับ
         </button>
         <img [src]="game.game_image" alt="{{ game.game_name }}" class="game-img" />

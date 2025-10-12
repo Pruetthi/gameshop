@@ -96,12 +96,20 @@ export class Header {
     });
   }
 
+  goToHistory() {
+    this.router.navigate(['/history']);
+  }
+
   goToProfile() {
     this.router.navigate(['/edit-profile']);
   }
 
   createGame() {
     this.router.navigate(['/creategame']);
+  }
+
+  goToUserHistory() {
+    this.router.navigate(['/history-user']);
   }
 
   logout() {
