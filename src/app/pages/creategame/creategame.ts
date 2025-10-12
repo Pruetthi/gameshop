@@ -11,7 +11,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../config/constants';
 
@@ -46,7 +46,8 @@ export class Creategame implements OnInit {
 
   categories: { category_id: number; category_name: string }[] = [];
 
-  constructor(private http: HttpClient, private constants: Constants) { }
+  constructor(private http: HttpClient, private constants: Constants,
+    private router: Router) { }
 
   ngOnInit(): void {
     // โหลดหมวดหมู่เกมจาก API (อาจจะเป็น /categories)
@@ -85,6 +86,7 @@ export class Creategame implements OnInit {
       next: (res: any) => {
         alert('เพิ่มเกมสำเร็จ!');
         console.log(res);
+        this.router.navigate(['/main']);
       },
       error: (err) => {
         console.error(err);

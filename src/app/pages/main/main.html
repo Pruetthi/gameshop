@@ -31,7 +31,7 @@
             <img [src]="game.game_image" alt="{{ game.game_name }}" class="game-img" />
             <h3>{{ game.game_name }}</h3>
             <p><strong>ราคา:</strong> {{ game.price }} บาท</p>
-            <p><small>วางขายเมื่อ: {{ game.release_date | date:'yyyy-MM-dd' }}</small></p>
+            <p><small>วางขายเมื่อ: {{ game.release_date | date:'dd/MM/yyyy' }}</small></p>
         </div>
 
     </div>
