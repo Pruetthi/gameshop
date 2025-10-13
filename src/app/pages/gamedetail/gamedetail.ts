@@ -18,7 +18,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./gamedetail.scss']
 })
 export class Gamedetail implements OnInit {
-  game: any = null; // เก็บข้อมูลเกม
+  game: any = null;
   gameId: string = '';
   status: string = '';
 
@@ -43,7 +43,7 @@ export class Gamedetail implements OnInit {
   loadGameDetail(id: string) {
     this.http.get<any>(`${this.constants.API_ENDPOINT}/game/${id}`).subscribe({
       next: res => {
-        this.game = res; // สมมติ API คืนข้อมูลเกมตรง ๆ
+        this.game = res;
       },
       error: err => {
         console.error('โหลดข้อมูลเกมไม่สำเร็จ', err);
@@ -62,7 +62,6 @@ export class Gamedetail implements OnInit {
       return;
     }
 
-    // เปิด dialog ยืนยันการซื้อ
     const dialogRef = this.dialog.open(PurchaseDialogComponent, {
       width: '400px'
     });
@@ -74,7 +73,6 @@ export class Gamedetail implements OnInit {
     dialogRef.afterClosed().subscribe(confirmed => {
       if (!confirmed) return;
 
-      // ซื้อเกมจริง
       fetch(`${this.constants.API_ENDPOINT}/purchase`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -83,13 +81,13 @@ export class Gamedetail implements OnInit {
         .then(res => res.json())
         .then(data => {
           if (data.new_balance !== undefined) {
-            // อัปเดต localStorage
+
             user.wallet_balance = data.new_balance;
             localStorage.setItem('user', JSON.stringify(user));
 
             alert(`ซื้อเกมสำเร็จ! ยอดเงินคงเหลือ: ${data.new_balance} บาท`);
 
-            // redirect กลับ main page
+
             this.router.navigate(['/main']);
           } else {
             alert(data.message || 'เกิดข้อผิดพลาด');

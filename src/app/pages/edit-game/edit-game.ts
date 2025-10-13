@@ -95,7 +95,6 @@ export class EditGame implements OnInit {
       next: () => {
         this.message = "ลบเกมสำเร็จ";
         this.messageColor = "green";
-        // กลับไปหน้าเกมทั้งหมด
         this.router.navigate(['/']);
       },
       error: (err) => {
