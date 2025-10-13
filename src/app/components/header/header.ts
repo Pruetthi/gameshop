@@ -112,6 +112,10 @@ export class Header {
     this.router.navigate(['/history-user']);
   }
 
+  goHome() {
+    this.router.navigate(['/main']);
+  }
+
   logout() {
     localStorage.removeItem('user');
     this.router.navigate(['/']);

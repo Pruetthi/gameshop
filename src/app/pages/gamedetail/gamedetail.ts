@@ -21,6 +21,7 @@ export class Gamedetail implements OnInit {
   game: any = null;
   gameId: string = '';
   status: string = '';
+  alreadyPurchased: boolean = false;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private constants: Constants, private router: Router,
     private dialog: MatDialog, private location: Location) { }
@@ -30,13 +31,23 @@ export class Gamedetail implements OnInit {
     if (user) {
       const userData = JSON.parse(user);
       this.status = userData.status || '';
-    }
-    const gameId = this.route.snapshot.paramMap.get('id');
-    if (gameId) {
-      this.http.get(`${this.constants.API_ENDPOINT}/game/${gameId}`).subscribe({
-        next: (res: any) => this.game = res,
-        error: (err) => console.error('โหลดรายละเอียดเกมไม่สำเร็จ', err)
-      });
+
+      const gameId = this.route.snapshot.paramMap.get('id');
+      if (gameId) {
+        this.http.get(`${this.constants.API_ENDPOINT}/game/${gameId}`).subscribe({
+          next: (res: any) => {
+            this.game = res;
+
+
+            this.http.get(`${this.constants.API_ENDPOINT}/check-purchase/${userData.user_id}/${gameId}`)
+              .subscribe({
+                next: (check: any) => this.alreadyPurchased = check.purchased,
+                error: err => console.error('ตรวจสอบการซื้อเกมไม่สำเร็จ', err)
+              });
+          },
+          error: (err) => console.error('โหลดรายละเอียดเกมไม่สำเร็จ', err)
+        });
+      }
     }
   }
 
