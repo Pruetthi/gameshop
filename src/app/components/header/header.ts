@@ -104,6 +104,10 @@ export class Header {
     this.router.navigate(['/edit-profile']);
   }
 
+  goToMyGame() {
+    this.router.navigate(['/mygame']);
+  }
+
   createGame() {
     this.router.navigate(['/creategame']);
   }

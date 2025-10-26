@@ -39,6 +39,11 @@
         <span>โปรไฟล์</span>
     </button>
 
+    <button mat-menu-item (click)="goToMyGame()">
+        <mat-icon>library_books</mat-icon>
+        <span>คลังเกม</span>
+    </button>
+
     <button mat-menu-item *ngIf="status === 'user'" (click)="goToHistory()">
         <mat-icon>history</mat-icon>
         <span>ประวัติ</span>
