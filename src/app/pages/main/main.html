@@ -22,7 +22,15 @@
         </select>
         <button (click)="searchGames()">ค้นหา</button>
     </div>
-
+    <h2>🔥 เกมขายดี 5 อันดับแรก</h2>
+    <div class="games-container">
+        <div *ngFor="let game of topGames" class="game-card" (click)="goToGameDetail(game.game_id)">
+            <img [src]="game.game_image" alt="{{ game.game_name }}" class="game-img" />
+            <h3>{{ game.game_name }}</h3>
+            <p><strong>ยอดขาย:</strong> {{ game.total_sales }} ครั้ง</p>
+            <p><strong>ราคา:</strong> {{ game.price }} บาท</p>
+        </div>
+    </div>
 
     <h2>🎮 เกมทั้งหมด</h2>
     <div class="games-container">

@@ -108,6 +108,10 @@ export class Header {
     this.router.navigate(['/creategame']);
   }
 
+  createCode() {
+    this.router.navigate(['/discounts']);
+  }
+
   goToUserHistory() {
     this.router.navigate(['/history-user']);
   }
@@ -118,6 +122,7 @@ export class Header {
 
   logout() {
     localStorage.removeItem('user');
+    localStorage.removeItem('cart');
     this.router.navigate(['/']);
   }
 }

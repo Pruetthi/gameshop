@@ -19,6 +19,7 @@ export class Main implements OnInit {
   profileImage: string = "";
   games: any[] = [];
   filteredGames: any[] = [];
+  topGames: any[] = [];
 
   categories: any[] = [];
   searchText: string = '';
@@ -39,6 +40,7 @@ export class Main implements OnInit {
 
     this.loadGames();
     this.loadCategories();
+    this.loadTopGames(); // ✅ โหลดเกมขายดี
   }
 
   goToEditProfile() {
@@ -76,6 +78,13 @@ export class Main implements OnInit {
   goToGameDetail(gameId: number) {
 
     this.router.navigate(['/game-detail', gameId]);
+  }
+
+  loadTopGames() {
+    this.http.get<any[]>(`${this.constants.API_ENDPOINT}/games/top-selling`).subscribe({
+      next: (res) => this.topGames = res,
+      error: (err) => console.error("โหลดเกมขายดีไม่สำเร็จ", err),
+    });
   }
   logout() {
     localStorage.removeItem("user");

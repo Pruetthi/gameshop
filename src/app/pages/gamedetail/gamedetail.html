@@ -36,7 +36,7 @@
         </div>
 
         <div class="action-buttons">
-            <button mat-raised-button class="btn-addcart" *ngIf="status === 'user'">
+            <button mat-raised-button class="btn-addcart" *ngIf="status === 'user'" (click)="addToCart(game)">
                 <mat-icon>shopping_cart</mat-icon>
                 <span>เพิ่มลงตะกร้า</span>
             </button>
