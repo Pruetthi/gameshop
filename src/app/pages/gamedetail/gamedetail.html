@@ -26,13 +26,15 @@
 
     <div class="sidebar">
         <div class="top-games">
-            <h3>เกมฮิตประจำวัน</h3>
-        </div>
-        <div class="top-games">
-            <h3>เกมฮิตประจำเดือน</h3>
-        </div>
-        <div class="top-games">
-            <h3>เกมฮิตประจำปี</h3>
+            <h3>🔥 เกมขายดี</h3>
+            <!-- (click)="loadGameDetail(top.game_id)" -->
+            <div *ngFor="let top of topSellingGames" class="top-game-item">
+                <img [src]="top.game_image" alt="{{ top.game_name }}">
+                <div>
+                    <h4>{{ top.game_name }}</h4>
+                    <p>{{ top.total_sales }} ขายแล้ว</p>
+                </div>
+            </div>
         </div>
 
         <div class="action-buttons">

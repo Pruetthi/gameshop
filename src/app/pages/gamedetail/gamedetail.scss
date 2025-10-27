@@ -140,3 +140,50 @@
     color: white !important;
     cursor: not-allowed;
 }
+
+.sidebar {
+    width: 300px;
+    background: #1e1e1e;
+    padding: 16px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.top-games h3 {
+    color: #ffd54f;
+    margin-bottom: 10px;
+}
+
+.top-game-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background: #2c2c2c;
+    border-radius: 8px;
+    padding: 8px;
+    transition: background 0.2s;
+}
+
+.top-game-item:hover {
+    background: #3a3a3a;
+}
+
+.top-game-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.top-game-item h4 {
+    font-size: 14px;
+    margin: 0;
+    color: #fff;
+}
+
+.top-game-item p {
+    font-size: 12px;
+    color: #ccc;
+}
