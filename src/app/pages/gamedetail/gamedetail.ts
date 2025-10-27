@@ -50,6 +50,12 @@ export class Gamedetail implements OnInit {
         });
       }
     }
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.loadGameDetail(id);
+      }
+    });
     this.loadTopSellingGames();
   }
 
@@ -127,6 +133,9 @@ export class Gamedetail implements OnInit {
         }
       });
   }
+  goToGameDetail(gameId: number) {
+  this.router.navigate(['/game-detail', gameId]);
+}
 
   goBack(): void {
     this.location.back();

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { Header } from '../../components/header/header';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -27,7 +27,8 @@ import { Constants } from '../../config/constants';
     MatSelectModule,
     MatOptionModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    Header
   ],
   templateUrl: './creategame.html',
   styleUrls: ['./creategame.scss'],

@@ -28,7 +28,7 @@
         <div class="top-games">
             <h3>เกมฮิต</h3>
             <!-- (click)="loadGameDetail(top.game_id)" -->
-            <div *ngFor="let top of topSellingGames" class="top-game-item">
+            <div *ngFor="let top of topSellingGames" class="top-game-item" (click)="goToGameDetail(top.game_id)">
                 <img [src]="top.game_image" alt="{{ top.game_name }}">
                 <div>
                     <h4>{{ top.game_name }}</h4>
