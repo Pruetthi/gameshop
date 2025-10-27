@@ -1,11 +1,11 @@
 <app-header></app-header>
 
 <div class="container">
-    <h2 class="title">🎮 เกมที่คุณซื้อแล้ว</h2>
+    <h2 class="title">คลังเกมของฉัน</h2>
 
     <div *ngIf="purchasedGames.length === 0" class="empty">
         <img src="assets/empty-cart.png" alt="Empty" class="empty-img" />
-        <p>🛍️ ยังไม่มีการซื้อเกม</p>
+        <p>ยังไม่มีการซื้อเกม</p>
         <button mat-raised-button color="primary" routerLink="/main">ไปเลือกซื้อเกม</button>
     </div>
 
@@ -14,8 +14,8 @@
             <img [src]="game.game_image" alt="{{ game.game_name }}" class="game-img" />
             <div class="game-info">
                 <h3>{{ game.game_name }}</h3>
-                <p class="price">💰 {{ game.amount | number }} บาท</p>
-                <p class="date">🕒 ซื้อเมื่อ: {{ game.transaction_date | date:'dd/MM/yyyy' }}</p>
+
+                <p class="date">วันที่ซื้อ: {{ game.transaction_date | date:'dd/MM/yyyy' }}</p>
             </div>
         </div>
     </div>

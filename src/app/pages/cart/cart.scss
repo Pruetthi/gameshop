@@ -18,7 +18,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
-    background: #fafafa;
+    background: #FAB12F;
 }
 
 .cart-info {
@@ -45,4 +45,49 @@
 .empty {
     text-align: center;
     margin-top: 4rem;
+}
+
+/* ปุ่มทั่วไปให้เป็นสี #FAB12F */
+button[mat-button],
+button[mat-raised-button],
+button[mat-icon-button] {
+    margin-top: 50px;
+    background-color: #FAB12F !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease;
+}
+
+/* Hover ทั่วไป */
+button[mat-button]:hover,
+button[mat-raised-button]:hover,
+button[mat-icon-button]:hover {
+    background-color: #e09e2a !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(250, 177, 47, 0.4);
+}
+
+/* ปุ่มลบ (ไอคอน) */
+button[mat-icon-button][color="warn"] {
+    background-color: transparent !important;
+    color: #d32f2f !important;
+}
+
+/* 🔹 ปุ่มซื้อเกมทั้งหมด ใช้สี #0D0D39 */
+button[mat-raised-button][color="accent"] {
+    background-color: #0D0D39 !important;
+    color: #fff !important;
+}
+
+button[mat-raised-button][color="accent"]:hover {
+    background-color: #1a1a5a !important;
+    box-shadow: 0 4px 10px rgba(13, 13, 57, 0.5);
+}
+
+/* จัดตำแหน่งปุ่ม */
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 1rem;
 }

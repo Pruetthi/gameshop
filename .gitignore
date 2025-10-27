@@ -5,12 +5,15 @@
 /tmp
 /out-tsc
 /bazel-out
-
+/.firebase
 # Node
 /node_modules
 npm-debug.log
 yarn-error.log
 firebase-debug.log
+firebase.json
+.firebaserc
+
 # IDEs and editors
 .idea/
 .project

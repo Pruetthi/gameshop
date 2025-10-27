@@ -6,40 +6,40 @@
 
         <form (submit)="onUpdate($event)" enctype="multipart/form-data" class="edit-game-form">
 
+            <!-- 🔹 รูปเกมแสดงด้านบน -->
+            <div class="image-section">
+                <div *ngIf="previewUrl; else noImage" class="preview">
+                    <img [src]="previewUrl" alt="Game Preview" />
+                </div>
+                <ng-template #noImage>
+                    <div class="no-image">ไม่มีรูปภาพ</div>
+                </ng-template>
 
+                <label for="game_image" class="upload-btn">เลือกรูปภาพเกม</label>
+                <input id="game_image" type="file" (change)="onFileSelected($event)" hidden />
+            </div>
+
+            <!-- 🔹 ช่องกรอกข้อมูล -->
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>ชื่อเกม</mat-label>
                 <input matInput type="text" [(ngModel)]="game.game_name" name="game_name" required />
             </mat-form-field>
-
 
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>คำอธิบาย</mat-label>
                 <textarea matInput [(ngModel)]="game.description" name="description" required rows="4"></textarea>
             </mat-form-field>
 
-
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>ราคา</mat-label>
                 <input matInput type="number" [(ngModel)]="game.price" name="price" required />
             </mat-form-field>
-
-
-            <div class="file-upload">
-                <label for="game_image" class="upload-btn">เลือกรูปภาพเกม</label>
-                <input id="game_image" type="file" (change)="onFileSelected($event)" hidden />
-                <div *ngIf="previewUrl" class="preview">
-                    <img [src]="previewUrl" alt="Game Preview" />
-                </div>
-            </div>
-
 
             <button class="btn save-btn" type="submit">บันทึกการแก้ไข</button>
 
             <button type="button" class="btn delete-btn" (click)="onDelete(game.game_id)">
                 ลบเกม
             </button>
-
         </form>
 
         <p [style.color]="messageColor" class="message">{{ message }}</p>

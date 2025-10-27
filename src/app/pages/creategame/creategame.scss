@@ -1,17 +1,96 @@
 .add-game-container {
     max-width: 600px;
-    margin: 30px auto;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
+.add-game-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* หัวข้อ */
+.add-game-container h2 {
+    text-align: center;
+    color: #0d0d39;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.add-game-container h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #fab12f;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+/* ช่องกรอกฟอร์ม */
 mat-form-field {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
+/* ส่วนอัปโหลดรูป */
 .upload-section {
-    margin: 10px 0 20px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.upload-section label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.upload-section input[type="file"] {
+    padding: 8px;
+    background: #f5f5f5;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.upload-section input[type="file"]:hover {
+    background-color: #fff4d6;
+    border-color: #fab12f;
+}
+
+/* ปุ่มบันทึก */
+button[mat-raised-button] {
+    width: 100%;
+    background-color: #0d0d39 !important;
+    color: white !important;
+    padding: 12px 0;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+button[mat-raised-button]:hover {
+    background-color: #1a1a5a !important;
+    box-shadow: 0 4px 12px rgba(13, 13, 57, 0.4);
+}
+
+/* เอฟเฟกต์ตอนคลิก */
+button[mat-raised-button]:active {
+    transform: scale(0.98);
+}
+
+/* จัด layout ฟอร์ม */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

@@ -1,72 +1,91 @@
+/* 🔸 พื้นหลังและการจัดวาง */
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;
+  padding: 40px 20px;
+  background-color: #fff7e6;
   min-height: 100vh;
 }
 
+/* 🔸 การ์ดหลัก */
 .card {
-  background: #1e1e1e;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  background: #fab12f;
   padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 400px;
-  color: #fff;
-  text-align: left;
-  transition: transform 0.2s ease;
+  max-width: 500px;
+  color: #0d0d39;
+}
 
-  h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #00bcd4;
-  }
+.card h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 700;
+  border-bottom: 3px solid #0d0d39;
+  display: inline-block;
+  padding-bottom: 5px;
+}
 
-  .form-group {
-    margin-bottom: 15px;
+/* 🔹 ช่องกรอก */
+.form-group {
+  margin-bottom: 20px;
+}
 
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 500;
-    }
+.form-group label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
 
-    input,
-    select {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 10px;
-      background: #2a2a2a;
-      color: #fff;
-      outline: none;
-      font-size: 14px;
-      transition: 0.2s;
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
 
-      &:focus {
-        background: #333;
-        box-shadow: 0 0 0 2px #00bcd4;
-      }
-    }
-  }
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #0d0d39;
+  box-shadow: 0 0 5px rgba(13, 13, 57, 0.3);
+}
 
-  button {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(90deg, #00bcd4, #0097a7);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
-    margin-bottom: 20px;
+/* 🔹 ปุ่ม */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0, 188, 212, 0.4);
-    }
-  }
+button:first-of-type {
+  background-color: #0d0d39;
+  color: #ffffff;
+}
+
+button:first-of-type:hover {
+  background-color: #1a1a5e;
+}
+
+button:last-of-type {
+  background-color: #ffffff;
+  color: #0d0d39;
+  border: 2px solid #0d0d39;
+}
+
+button:last-of-type:hover {
+  background-color: #0d0d39;
+  color: #ffffff;
 }
