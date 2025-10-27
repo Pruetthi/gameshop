@@ -89,13 +89,13 @@ export class Gamedetail implements OnInit {
       return;
     }
 
-    // ดึงส่วนลดที่ยังไม่ใช้
+
     this.http.get(`${this.constants.API_ENDPOINT}/discounts/available/${user.user_id}`)
       .subscribe({
         next: (availableDiscounts) => {
           const dialogRef = this.dialog.open(PurchaseDialogComponent, {
             width: '400px',
-            data: { game, discounts: availableDiscounts } // ส่งส่วนลดไปที่ dialog
+            data: { game, discounts: availableDiscounts }
           });
 
           dialogRef.afterClosed().subscribe(result => {
@@ -134,8 +134,8 @@ export class Gamedetail implements OnInit {
       });
   }
   goToGameDetail(gameId: number) {
-  this.router.navigate(['/game-detail', gameId]);
-}
+    this.router.navigate(['/game-detail', gameId]);
+  }
 
   goBack(): void {
     this.location.back();
@@ -147,23 +147,23 @@ export class Gamedetail implements OnInit {
       return;
     }
 
-    // ✅ ถ้าซื้อแล้ว ให้บอกและหยุดทำงานเลย
+
     if (this.alreadyPurchased) {
       alert('คุณได้ซื้อเกมนี้แล้ว ไม่สามารถเพิ่มลงในตะกร้าได้');
       return;
     }
 
-    // ✅ ดึงตะกร้าปัจจุบัน
+
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
-    // ✅ ตรวจสอบว่าเกมนี้มีในตะกร้าอยู่แล้วหรือไม่
+
     const exists = cart.some((item: any) => item.game_id === game.game_id);
     if (exists) {
       alert('เกมนี้อยู่ในตะกร้าแล้ว');
       return;
     }
 
-    // ✅ เพิ่มเกมใหม่เข้าไป
+
     cart.push({
       game_id: game.game_id,
       game_name: game.game_name,

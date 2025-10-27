@@ -4,7 +4,7 @@
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
   .header-actions {
     display: flex;
@@ -29,7 +29,8 @@
     border-collapse: collapse;
     text-align: left;
 
-    th, td {
+    th,
+    td {
       padding: 12px 15px;
     }
 

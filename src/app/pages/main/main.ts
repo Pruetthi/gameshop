@@ -40,7 +40,7 @@ export class Main implements OnInit {
 
     this.loadGames();
     this.loadCategories();
-    this.loadTopGames(); // ✅ โหลดเกมขายดี
+    this.loadTopGames();
   }
 
   goToEditProfile() {

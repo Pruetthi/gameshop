@@ -20,7 +20,7 @@ export class AllDiscounts implements OnInit {
   discounts: any[] = [];
 
   constructor(private http: HttpClient, private constants: Constants,
-     private router: Router, private location: Location, private dialog: MatDialog) {}
+    private router: Router, private location: Location, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadDiscounts();
@@ -40,17 +40,17 @@ export class AllDiscounts implements OnInit {
   editDiscount(d: any) {
     const dialogRef = this.dialog.open(EditDiscountDialog, {
       width: '400px',
-      data: { ...d } // ส่งข้อมูล discount ไป dialog
+      data: { ...d }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (!result) return; // ยกเลิก
-      // เรียก API PUT
+      if (!result) return;
+
       this.http.put(`${this.constants.API_ENDPOINT}/discounts/${d.discount_code}`, result)
         .subscribe({
           next: () => {
             alert('แก้ไขสำเร็จ!');
-            this.loadDiscounts(); // โหลดใหม่
+            this.loadDiscounts();
           },
           error: (err) => {
             console.error(err);

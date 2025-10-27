@@ -10,7 +10,7 @@ import { Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, Header, HttpClientModule, RouterModule],
   templateUrl: './mygame.html',
-  styleUrls: ['./mygame.scss'] // 👈 แก้เป็น styleUrls (มี s)
+  styleUrls: ['./mygame.scss']
 })
 export class Mygame implements OnInit {
   purchasedGames: any[] = [];
