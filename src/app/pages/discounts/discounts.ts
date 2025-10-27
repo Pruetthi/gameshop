@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // ✅ เพิ่มบรรทัดนี้
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Constants } from '../../config/constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-discounts',
@@ -17,7 +18,7 @@ export class Discounts {
   discount_type = 'flat';
   usage_limit = 1;
 
-  constructor(private http: HttpClient, private constants: Constants) {}
+  constructor(private http: HttpClient, private constants: Constants, private router: Router) {}
 
   addDiscount() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -28,5 +29,9 @@ export class Discounts {
       usage_limit: this.usage_limit,
       created_by: user.user_id
     }).subscribe(() => alert('เพิ่มโค้ดสำเร็จ'));
+  }
+
+  goToAllCodes(){
+    this.router.navigate(['/all-discounts']);
   }
 }

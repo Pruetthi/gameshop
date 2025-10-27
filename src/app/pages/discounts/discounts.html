@@ -18,7 +18,6 @@
             <label>ประเภทส่วนลด</label>
             <select [(ngModel)]="discount_type">
                 <option value="flat">ลดเป็นจำนวนเงิน (บาท)</option>
-                <option value="percent">ลดเป็นเปอร์เซ็นต์ (%)</option>
             </select>
         </div>
 
@@ -28,5 +27,6 @@
         </div>
 
         <button (click)="addDiscount()">เพิ่มโค้ด</button>
+        <button (click)="goToAllCodes()">ดูโค้ดทั้งหมด</button>
     </div>
 </div>

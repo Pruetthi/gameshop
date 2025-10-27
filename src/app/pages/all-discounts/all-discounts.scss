@@ -1,0 +1,67 @@
+.discount-list-container {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    button {
+      font-weight: 500;
+    }
+  }
+
+  .discount-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+
+    th, td {
+      padding: 12px 15px;
+    }
+
+    thead {
+      background-color: #1976d2;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    tbody tr {
+      background-color: #fff;
+      border-bottom: 1px solid #e0e0e0;
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+
+      button {
+        min-width: 70px;
+      }
+    }
+  }
+
+  .no-data {
+    text-align: center;
+    font-style: italic;
+    color: #999;
+    margin-top: 20px;
+  }
+}

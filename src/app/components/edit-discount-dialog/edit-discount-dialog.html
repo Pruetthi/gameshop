@@ -1,0 +1,34 @@
+<div class="dialog-container">
+    <h2 mat-dialog-title class="dialog-title">
+        <mat-icon color="primary">edit</mat-icon>
+        แก้ไขโค้ดส่วนลด
+    </h2>
+
+    <div mat-dialog-content class="dialog-content">
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>ชื่อโค้ด</mat-label>
+            <input matInput [(ngModel)]="data.discount_code" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>จำนวนส่วนลด</mat-label>
+            <input matInput type="number" [(ngModel)]="data.discount_amount" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>จำกัดการใช้</mat-label>
+            <input matInput type="number" [(ngModel)]="data.usage_limit" />
+        </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions align="end" class="dialog-actions">
+        <button mat-button (click)="close()" class="cancel-btn">
+            <mat-icon>close</mat-icon>
+            ยกเลิก
+        </button>
+        <button mat-raised-button color="primary" (click)="save()" class="save-btn">
+            <mat-icon>save</mat-icon>
+            บันทึก
+        </button>
+    </div>
+</div>

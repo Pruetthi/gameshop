@@ -23,14 +23,13 @@ import { MatSelectModule } from '@angular/material/select';
           <mat-option value="">ไม่มีส่วนลด</mat-option>
           <mat-option *ngFor="let d of discounts" [value]="d.discount_code">
             {{ d.discount_code }} - 
-            {{ d.discount_type === 'flat' ? d.discount_amount + ' บาท' : d.discount_amount*100 + '%' }}
+            {{ d.discount_type === 'flat' ? d.discount_amount + ' บาท' : '' }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       
       <p *ngIf="finalPrice !== null">ราคาหลังส่วนลด: {{ finalPrice | number }} บาท</p>
     </mat-dialog-content>
-
     <mat-dialog-actions align="end">
       <button mat-button (click)="close(false)">ยกเลิก</button>
       <button mat-flat-button color="primary" (click)="confirmPurchase()">ยืนยัน</button>

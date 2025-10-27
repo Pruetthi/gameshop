@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<div class="discount-list-container">
+    <div class="header-actions">
+        <button mat-raised-button color="primary" (click)="goBack()">
+            ← ย้อนกลับ
+        </button>
+        <h2>รายการโค้ดส่วนลดทั้งหมด</h2>
+    </div>
+
+    <table class="discount-table" *ngIf="discounts.length > 0; else noData">
+        <thead>
+            <tr>
+                <th>รหัสส่วนลด</th>
+                <th>ประเภท</th>
+                <th>จำนวนส่วนลด</th>
+                <th>จำกัดการใช้</th>
+                <th>การจัดการ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of discounts">
+                <td>{{ d.discount_code }}</td>
+                <td>{{ d.discount_type === 'flat' ? 'จำนวนเงิน' : 'เปอร์เซ็นต์' }}</td>
+                <td>
+                    <span *ngIf="d.discount_type === 'flat'">{{ d.discount_amount }} บาท</span>
+                    <span *ngIf="d.discount_type === 'percent'">{{ d.discount_amount * 100 }}%</span>
+                </td>
+                <td>{{ d.usage_limit }}</td>
+                <td class="actions">
+                    <button mat-stroked-button color="accent" (click)="editDiscount(d)">
+                        ✏️ แก้ไข
+                    </button>
+                    <button mat-stroked-button color="warn" (click)="deleteDiscount(d.discount_code)">
+                        🗑️ ลบ
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #noData>
+        <p class="no-data">ยังไม่มีโค้ดส่วนลดในระบบ</p>
+    </ng-template>
+</div>

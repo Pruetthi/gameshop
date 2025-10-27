@@ -11,6 +11,7 @@ import { HistoryUser } from './pages/history-user/history-user';
 import { Discounts } from './pages/discounts/discounts';
 import { Cart } from './pages/cart/cart';
 import { Mygame } from './pages/mygame/mygame';
+import { AllDiscounts } from './pages/all-discounts/all-discounts';
 
 export const routes: Routes = [
     { path: '', component: Login },
@@ -25,5 +26,6 @@ export const routes: Routes = [
     { path: 'history-user', component: HistoryUser },
     { path: 'discounts', component: Discounts },
     { path: 'cart', component: Cart },
-    { path: 'mygame', component: Mygame }
+    { path: 'mygame', component: Mygame },
+    { path: 'all-discounts', component: AllDiscounts },
 ];
